@@ -1,0 +1,33 @@
+{
+  "name": "rehype-shiki",
+  "version": "0.0.1",
+  "description": "rehype plugin to highlight code blocks with shiki",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rsclarke/rehype-shiki.git"
+  },
+  "keywords": [
+    "rehype",
+    "shiki",
+    "hast",
+    "syntax",
+    "highlight",
+    "highlighting"
+  ],
+  "author": "Richard Clarke <rsclrk@pm.me> (https://rsclarke.dev)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rsclarke/rehype-shiki/issues"
+  },
+  "homepage": "https://github.com/rsclarke/rehype-shiki#readme",
+  "dependencies": {
+    "hast-util-to-string": "^1.0.1",
+    "shiki": "^0.1.4",
+    "unist-builder": "^1.0.4",
+    "unist-util-visit": "^1.4.1"
+  }
+}
