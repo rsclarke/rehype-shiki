@@ -4,7 +4,8 @@
   "description": "rehype plugin to highlight code blocks with shiki",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "prettier --write '**/*.js' && xo --fix",
+    "test": "xo"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,24 @@
   "dependencies": {
     "hast-util-to-string": "^1.0.1",
     "shiki": "^0.1.4",
+    "shiki-languages": "^0.1.4",
     "unist-builder": "^1.0.4",
     "unist-util-visit": "^1.4.1"
+  },
+  "devDependencies": {
+    "prettier": "1.17.1",
+    "xo": "^0.24.0"
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "useTabs": false,
+    "singleQuote": true,
+    "bracketSpacing": false,
+    "semi": false,
+    "trailingComma": "none"
+  },
+  "xo": {
+    "prettier": true,
+    "esnext": false
   }
 }
