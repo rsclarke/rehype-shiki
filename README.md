@@ -82,7 +82,7 @@ This is in respect to the [mdast-util-to-hast code handler](https://github.com/s
 
 [rehype]: https://github.com/rehypejs/rehype
 [shiki]: https://github.com/octref/shiki
-[rehype-highlight]: https://raw.githubusercontent.com/rehypejs/rehype-highlight
+[rehype-highlight]: https://github.com/rehypejs/rehype-highlight
 [npm]: https://docs.npmjs.com/cli/install
 [hast]: https://github.com/syntax-tree/hast
 [license]: LICENSE
