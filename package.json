@@ -1,6 +1,6 @@
 {
   "name": "rehype-shiki",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "rehype plugin to highlight code blocks with shiki",
   "main": "index.js",
   "files": [
@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/rsclarke/rehype-shiki#readme",
   "dependencies": {
-    "hast-util-to-string": "^1.0.1",
+    "hast-util-to-string": "^1.0.2",
     "shiki": "^0.1.4",
     "shiki-languages": "^0.1.4",
     "unist-builder": "^1.0.4",
