@@ -74,6 +74,10 @@ This is in respect to the [mdast-util-to-hast code handler](https://github.com/s
 
 `string`, default: `'nord'` - Name of shiki theme to use, otherwise path to theme file for it to load.
 
+##### `options.useBackground`
+
+`boolean`, default: `true` - Whether to apply the background theme colour to the `pre` element.
+
 ## License
 
 [MIT][license] © [@rsclarke][rsclarke]

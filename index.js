@@ -15,6 +15,7 @@ module.exports = attacher
 function attacher(options) {
   var settings = options || {}
   var theme = settings.theme || 'nord'
+  var useBackground = settings.useBackground && true
   var shikiTheme
   var highlighter
 
@@ -43,7 +44,9 @@ function attacher(options) {
       return
     }
 
-    addStyle(parent, 'background: ' + shikiTheme.bg)
+    if (useBackground) {
+      addStyle(parent, 'background: ' + shikiTheme.bg)
+    }
 
     const lang = codeLanguage(node)
 
