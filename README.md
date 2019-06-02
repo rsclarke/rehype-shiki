@@ -66,7 +66,7 @@ Configure the language by using the `language-foo` class on the `code` element. 
 
 This is in respect to the [mdast-util-to-hast code handler](https://github.com/syntax-tree/mdast-util-to-hast/blob/master/lib/handlers/code.js).
 
-[Shiki][shiki] does not perform language detection, if unknown, this plugin falls back to the theme's background and text colour (chosen as `terminal.foreground` from the theme file).
+[Shiki][shiki] does not perform language detection, if unknown, this plugin falls back to the theme's background and text colour (chosen as `settings.foreground` from the theme file).
 
 #### `options`
 

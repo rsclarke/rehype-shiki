@@ -21,7 +21,11 @@ function attacher(options) {
   try {
     shikiTheme = shiki.getTheme(theme)
   } catch (error) {
-    shikiTheme = shiki.loadTheme(theme)
+    try {
+      shikiTheme = shiki.loadTheme(theme)
+    } catch (error) {
+      throw new Error('Unable to load theme: ' + theme)
+    }
   }
 
   return transformer
@@ -45,7 +49,7 @@ function attacher(options) {
 
     if (!lang) {
       // Unknown language, fall back to a foreground colour
-      addStyle(node, 'color: ' + shikiTheme.colors['terminal.foreground'])
+      addStyle(node, 'color: ' + shikiTheme.settings.foreground)
       return
     }
 
