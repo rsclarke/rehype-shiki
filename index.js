@@ -84,6 +84,9 @@ function tokensToHast(lines) {
     }
   }
 
+  // Remove the last \n
+  tree.pop()
+
   return tree
 }
 
