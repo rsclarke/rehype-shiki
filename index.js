@@ -78,7 +78,7 @@ function tokensToHast(lines) {
               tagName: 'span',
               properties: {style: 'color: ' + token.color}
             },
-            [u('text', escapeHtml(token.content))]
+            [u('text', token.content)]
           )
         )
       }
@@ -99,10 +99,6 @@ function addStyle(node, style) {
   styles.push(style)
   props.style = styles
   node.properties = props
-}
-
-function escapeHtml(html) {
-  return html.replace(/</g, '&lt;').replace(/>/g, '&gt;')
 }
 
 function codeLanguage(node) {
