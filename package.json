@@ -32,7 +32,7 @@
     "hast-util-to-string": "^1.0.2",
     "shiki": "^0.1.6",
     "shiki-languages": "^0.1.6",
-    "unist-builder": "^1.0.4",
+    "unist-builder": "^2.0.2",
     "unist-util-visit": "^2.0.0"
   },
   "devDependencies": {
