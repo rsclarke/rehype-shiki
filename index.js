@@ -21,10 +21,10 @@ function attacher(options) {
 
   try {
     shikiTheme = shiki.getTheme(theme)
-  } catch (error) {
+  } catch (_) {
     try {
       shikiTheme = shiki.loadTheme(theme)
-    } catch (error) {
+    } catch (_) {
       throw new Error('Unable to load theme: ' + theme)
     }
   }
@@ -105,8 +105,8 @@ function codeLanguage(node) {
   const className = node.properties.className || []
   var value
 
-  for (var i = 0; i < className.length; i++) {
-    value = className[i]
+  for (const element of className) {
+    value = element
 
     if (value.slice(0, 9) === 'language-') {
       return value.slice(9)

@@ -1,6 +1,6 @@
 {
   "name": "rehype-shiki",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "rehype plugin to highlight code blocks with shiki",
   "main": "index.js",
   "files": [
@@ -32,12 +32,12 @@
     "hast-util-to-string": "^1.0.2",
     "shiki": "^0.1.6",
     "shiki-languages": "^0.1.6",
-    "unist-builder": "^1.0.4",
-    "unist-util-visit": "^2.0.0"
+    "unist-builder": "^2.0.2",
+    "unist-util-visit": "^2.0.1"
   },
   "devDependencies": {
-    "prettier": "1.18.2",
-    "xo": "^0.24.0"
+    "prettier": "1.19.1",
+    "xo": "^0.25.3"
   },
   "prettier": {
     "tabWidth": 2,
