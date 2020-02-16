@@ -15,7 +15,7 @@ module.exports = attacher
 function attacher(options) {
   var settings = options || {}
   var theme = settings.theme || 'nord'
-  var useBackground = settings.useBackground && true
+  var useBackground = settings.useBackground || true
   var shikiTheme
   var highlighter
 
