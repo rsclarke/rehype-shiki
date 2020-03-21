@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/rsclarke/rehype-shiki#readme",
   "dependencies": {
-    "hast-util-to-string": "^1.0.2",
+    "hast-util-to-string": "^1.0.3",
     "shiki": "^0.1.6",
     "shiki-languages": "^0.1.6",
     "unist-builder": "^2.0.3",
