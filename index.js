@@ -15,7 +15,10 @@ module.exports = attacher
 function attacher(options) {
   var settings = options || {}
   var theme = settings.theme || 'nord'
-  var useBackground = settings.useBackground || true
+  var useBackground =
+    typeof settings.useBackground === 'undefined'
+      ? true
+      : Boolean(settings.useBackground)
   var shikiTheme
   var highlighter
 
