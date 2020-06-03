@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "prettier": "2.0.5",
-    "xo": "^0.30.0"
+    "xo": "^0.32.0"
   },
   "prettier": {
     "tabWidth": 2,
