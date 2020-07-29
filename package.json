@@ -33,7 +33,7 @@
     "shiki": "^0.1.7",
     "shiki-languages": "^0.1.6",
     "unist-builder": "^2.0.3",
-    "unist-util-visit": "^2.0.2"
+    "unist-util-visit": "^2.0.3"
   },
   "devDependencies": {
     "prettier": "2.0.5",
