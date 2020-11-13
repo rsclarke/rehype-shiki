@@ -30,8 +30,8 @@
   "homepage": "https://github.com/rsclarke/rehype-shiki#readme",
   "dependencies": {
     "hast-util-to-string": "^1.0.4",
-    "shiki": "^0.2.6",
-    "shiki-languages": "^0.2.6",
+    "shiki": "^0.2.7",
+    "shiki-languages": "^0.2.7",
     "unist-builder": "^2.0.3",
     "unist-util-visit": "^2.0.3"
   },
