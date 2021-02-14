@@ -34,7 +34,7 @@ var shiki = require('rehype-shiki')
 rehype()
   .data('settings', {fragment: true})
   .use(shiki)
-  .process(vfile.readSync('example.html'), function(err, file) {
+  .process(vfile.readSync('example.html'), function (err, file) {
     console.error(report(err || file))
     console.log(String(file))
   })
@@ -46,10 +46,11 @@ Now, running `node example` yields:
 example.html: no issues found
 <h1>Hello World!</h1>
 
-<pre style="background: #2e3440"><code class="language-js"><span style="color: #81A1C1">var</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">name</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">=</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">"</span><span style="color: #A3BE8C">World</span><span style="color: #ECEFF4">"</span><span style="color: #81A1C1">;</span>
+<pre
+  style="background: #2e3440"
+><code class="language-js"><span style="color: #81A1C1">var</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">name</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">=</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">"</span><span style="color: #A3BE8C">World</span><span style="color: #ECEFF4">"</span><span style="color: #81A1C1">;</span>
 <span style="color: #8FBCBB">console</span><span style="color: #ECEFF4">.</span><span style="color: #88C0D0">warn</span><span style="color: #D8DEE9FF">(</span><span style="color: #ECEFF4">"</span><span style="color: #A3BE8C">Hello, </span><span style="color: #ECEFF4">"</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">+</span><span style="color: #D8DEE9FF"> </span><span style="color: #D8DEE9">name</span><span style="color: #D8DEE9FF"> </span><span style="color: #81A1C1">+</span><span style="color: #D8DEE9FF"> </span><span style="color: #ECEFF4">"</span><span style="color: #A3BE8C">!</span><span style="color: #ECEFF4">"</span><span style="color: #D8DEE9FF">)</span>
 </code></pre>
-
 ```
 
 ## API
@@ -58,7 +59,7 @@ example.html: no issues found
 
 Apply syntax highlighting to `pre > code` using [**shiki**][shiki]; which tokenises the code block and new [**hast**][hast] nodes are subsequently created from (using this plugin).
 
-Configure the language by using the `language-foo` class on the `code` element.  For example;
+Configure the language by using the `language-foo` class on the `code` element. For example;
 
 ```html
 <pre><code class="language-js">console.log("Hello world!")</code></pre>
@@ -77,6 +78,18 @@ This is in respect to the [mdast-util-to-hast code handler](https://github.com/s
 ##### `options.useBackground`
 
 `boolean`, default: `true` - Whether to apply the background theme colour to the `pre` element.
+
+##### `options.langs`
+
+`ILanguageRegistration[]`, default: `[]` - Languages other than the default languages to load into shiki
+
+```json
+{
+  "id": "rockstar",
+  "scopeName": "source.rockstar",
+  "path": "./rockstar.tmLanguage.json" // or `plist`
+}
+```
 
 ## License
 
