@@ -70,15 +70,15 @@ interface PluginOptions {
   langs?: shiki.ILanguageRegistration[]
 }
 
-function attacher(options: PluginOptions = {}) {
-  const {theme = 'github-light', useBackground = true, langs = []} = options
+let highlighter: shiki.Highlighter
 
-  let highlighter: shiki.Highlighter
+function attacher(options: PluginOptions = {}) {
+  const {theme = 'nord', useBackground = true, langs = []} = options
 
   return transformer
 
   async function transformer(tree: NodeWithChildren) {
-    highlighter = await shiki.getHighlighter({
+    highlighter ||= await shiki.getHighlighter({
       theme,
       langs: [...BUNDLED_LANGUAGES, ...langs]
     })
