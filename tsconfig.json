@@ -1,0 +1,12 @@
+{
+  "include": ["src/**/*", "typings/**/*"],
+
+  "compilerOptions": {
+    "outDir": "dist",
+    "jsx": "react",
+    "declaration": true,
+    "esModuleInterop": true,
+    "lib": ["DOM", "es2019"],
+    "strict": true
+  }
+}

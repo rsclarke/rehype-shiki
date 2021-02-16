@@ -4,11 +4,12 @@
   "description": "rehype plugin to highlight code blocks with shiki",
   "main": "index.js",
   "files": [
-    "index.js"
+    "dist"
   ],
   "scripts": {
     "format": "prettier --write '**/*.js' && xo --fix",
-    "test": "xo"
+    "test": "xo",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -30,13 +31,14 @@
   "homepage": "https://github.com/rsclarke/rehype-shiki#readme",
   "dependencies": {
     "hast-util-to-string": "^1.0.4",
-    "shiki": "^0.1.7",
-    "shiki-languages": "^0.1.6",
+    "shiki": "^0.9.2",
+    "shiki-languages": "^0.2.7",
     "unist-builder": "^2.0.3",
     "unist-util-visit": "^2.0.3"
   },
   "devDependencies": {
-    "prettier": "2.0.5",
+    "prettier": "^2.2.1",
+    "typescript": "^4.1.5",
     "xo": "^0.32.1"
   },
   "prettier": {
