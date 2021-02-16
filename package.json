@@ -30,6 +30,7 @@
   },
   "homepage": "https://github.com/rsclarke/rehype-shiki#readme",
   "dependencies": {
+    "fast-copy": "^2.1.1",
     "hast-util-to-string": "^1.0.4",
     "shiki": "^0.9.2",
     "shiki-languages": "^0.2.7",

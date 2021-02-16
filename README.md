@@ -91,6 +91,31 @@ This is in respect to the [mdast-util-to-hast code handler](https://github.com/s
 }
 ```
 
+##### `options.darkTheme`
+
+`string`, default: `undefined` - Name of shiki theme to use to create dark mode blocks, otherwise path to theme file for it to load.
+
+After that this plugin will generate 2 code blocks, one for light mode and one for dark mode.
+It's up to you how to switch between these, either by media query, className or a combination of those.
+
+Here is how you would use a media query to hide and show the appropriate block.
+
+```css
+.syntax-dark {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .syntax-light {
+    display: none;
+  }
+
+  .syntax-dark {
+    display: block;
+  }
+}
+```
+
 ## License
 
 [MIT][license] © [@rsclarke][rsclarke]

@@ -4,6 +4,7 @@ import {Node} from 'unist'
 import visit from 'unist-util-visit'
 import hastToString from 'hast-util-to-string'
 import u from 'unist-builder'
+import clone from 'fast-copy'
 
 interface NodeWithChildren extends Node {
   children?: Node[]
@@ -47,6 +48,14 @@ function addStyle(node: Node, style: string) {
   node.properties = props
 }
 
+function addClass(node: Node, className: string) {
+  const props = (node.properties || {}) as Record<string, string[]>
+  props.className = props.className
+    ? [...props.className, className]
+    : [className]
+  node.properties = props
+}
+
 function codeLanguage(node: Node) {
   const props = (node.properties || {}) as Record<string, string[]>
   const className = props.className || []
@@ -64,46 +73,95 @@ function codeLanguage(node: Node) {
   return null
 }
 
+type Theme = string | shiki.IShikiTheme
+
 interface PluginOptions {
   theme?: string
+  darkTheme?: Theme
   useBackground?: boolean
   langs?: shiki.ILanguageRegistration[]
 }
 
-let highlighter: shiki.Highlighter
+let lightHighlighter: shiki.Highlighter
+let darkHighlighter: shiki.Highlighter | undefined
+
+function highlightBlock(
+  highlighter: shiki.Highlighter,
+  node: Node,
+  options: {
+    useBackground?: boolean
+  }
+) {
+  if (options.useBackground) {
+    addStyle(node, 'background: ' + highlighter.getBackgroundColor())
+  }
+
+  const lang = codeLanguage(node)
+
+  if (!lang) {
+    // Unknown language, fall back to a foreground colour
+    addStyle(node, 'color: ' + highlighter.getForegroundColor())
+    return
+  }
+
+  const tokens = highlighter.codeToThemedTokens(hastToString(node), lang)
+  const tree = tokensToHast(tokens)
+
+  node.children = tree
+}
+
+let light: Theme
+let dark: Theme
+
+async function getTheme(theme: Theme) {
+  return typeof theme === 'string'
+    ? shiki.BUNDLED_THEMES.includes(theme)
+      ? theme
+      : shiki.loadTheme(theme)
+    : theme
+}
 
 function attacher(options: PluginOptions = {}) {
-  const {theme = 'nord', useBackground = true, langs = []} = options
+  const {theme = 'nord', darkTheme, useBackground = true, langs = []} = options
 
   return transformer
 
   async function transformer(tree: NodeWithChildren) {
-    highlighter ||= await shiki.getHighlighter({
-      theme,
+    light ||= await getTheme(theme)
+    lightHighlighter ||= await shiki.getHighlighter({
+      theme: light,
       langs: [...BUNDLED_LANGUAGES, ...langs]
     })
 
-    visit(tree, 'element', (node, _, parent) => {
-      if (!parent || parent.tagName !== 'pre' || node.tagName !== 'code') {
+    if (darkTheme) {
+      dark ||= await getTheme(darkTheme)
+      darkHighlighter ||= await shiki.getHighlighter({
+        theme: dark,
+        langs: [...BUNDLED_LANGUAGES, ...langs]
+      })
+    }
+
+    visit(tree, 'element', (node, index, parent) => {
+      if (
+        !parent ||
+        parent.tagName !== 'pre' ||
+        node.tagName !== 'code' ||
+        node.dark
+      ) {
         return
       }
 
-      if (useBackground) {
-        addStyle(node, 'background: ' + highlighter.getBackgroundColor())
+      highlightBlock(lightHighlighter, node, {useBackground})
+      addClass(node, 'syntax-light')
+
+      const darkNode = clone(node)
+      darkNode.dark = true
+      addClass(darkNode, 'syntax-dark')
+
+      if (darkHighlighter) {
+        highlightBlock(darkHighlighter, darkNode, {useBackground})
+        parent.children.splice(index + 1, 0, darkNode)
       }
-
-      const lang = codeLanguage(node)
-
-      if (!lang) {
-        // Unknown language, fall back to a foreground colour
-        addStyle(node, 'color: ' + highlighter.getForegroundColor())
-        return
-      }
-
-      const tokens = highlighter.codeToThemedTokens(hastToString(node), lang)
-      const tree = tokensToHast(tokens)
-
-      node.children = tree
     })
   }
 }
